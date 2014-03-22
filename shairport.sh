@@ -18,6 +18,19 @@ cd shairport
 make
 sudo make install
 
+cd scripts/debian
+sudo install -m 755 init.d/shairport /etc/init.d
+sudo install -m 644 logrotate.d/shairport /etc/logrogate.d
+sudo tee /etc/default/shairport > /dev/null << END
+DAEMON=/usr/local/bin/shairport
+USER=pi
+BUFFER_FILL=440
+END
+sudo update-rc.d shairport defaults
+
+amixer set PCM 100%
+sudo /etc/init.d/shairport start
+
 date
 echo Build complete.
 ) | tee `mktemp $TEMPLATE.log` 2>&1
