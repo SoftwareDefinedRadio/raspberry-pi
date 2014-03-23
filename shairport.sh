@@ -24,7 +24,6 @@ sudo install -m 644 logrotate.d/shairport /etc/logrogate.d
 sudo tee /etc/default/shairport > /dev/null << END
 DAEMON=/usr/local/bin/shairport
 USER=pi
-BUFFER_FILL=440
 END
 sudo update-rc.d shairport defaults
 
